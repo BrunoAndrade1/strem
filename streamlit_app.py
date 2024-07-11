@@ -1,17 +1,12 @@
-import os
 import pandas as pd
 import streamlit as st
 from openai import OpenAI
-from dotenv import load_dotenv
 from lang import financial_assistant
 
-# Carregar variáveis de ambiente
-load_dotenv()
-
 # Verificar se a chave da API está carregada corretamente
-api_key = os.getenv("OPENAI_API_KEY")
+api_key = st.secrets["OPENAI_API_KEY"]
 if not api_key:
-    raise ValueError("A chave da API OpenAI não foi encontrada. Verifique o arquivo .env.")
+    raise ValueError("A chave da API OpenAI não foi encontrada. Verifique o arquivo de segredos.")
 
 # Inicialização do cliente OpenAI
 client = OpenAI(api_key=api_key)
